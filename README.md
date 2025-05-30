@@ -70,3 +70,30 @@ La forma más utilizada para escalar y centrar las variables es:
 
 Aplicando esta transformación, existe una relación entre la distancia euclídea y la correlación de Pearson que hace que los resultados obtenidos por clustering sean equivalentes.
 
+
+
+## Número óptimo de clusters
+Determinar el número óptimo de clusters es uno de los pasos más complicados a la hora de aplicar métodos de clustering, sobre todo cuando se trata de partitioning clustering, donde el número se tiene que especificar antes de poder ver los resultados. No existe una forma única de averiguar el número adecuado de clusters. Es un proceso bastante subjetivo que depende en gran medida del algoritmo empleado y de si se dispone de información previa sobre los datos con los que se está trabajando. A pesar de ello, se han desarrollado varias estrategias que ayudan en el proceso.
+
+### a. Método Elbow
+El método Elbow, también conocido como método del codo, sigue una estrategia comúnmente empleada para encontrar el valor óptimo de un hiperparámetro. La idea es probar un rango de valores del hiperparámetro en cuestión, representar gráficamente los resultados obtenidos con cada uno, e identificar aquel punto de la curva (codo) a partir del cual la mejora deja de ser notable. En los casos de partitioning clustering, como por ejemplo K-means, las observaciones se agrupan de una forma tal que se minimiza la varianza total intra-cluster. El método Elbow calcula la varianza total intra-cluster en función del número de clusters y escoge como óptimo aquel valor a partir del cual añadir más clusters apenas consigue mejoría.
+
+### b. Método average silhouette
+El método de average silhouette considera como número óptimo de clusters aquel que maximiza la media del silhouette coeficient de todas las observaciones.
+
+El silhouette coeficient (𝑠𝑖) cuantifica cómo de buena es la asignación que se ha hecho de una observación comparando su similitud con el resto de observaciones de su cluster frente a las de los otros clusters. Su valor puede estar entre -1 y 1, siendo valores próximos a 1 un indicativo de que la observación se ha asignado al cluster correcto.
+
+Para cada observación 𝑖, el silhouette coeficient (𝑠𝑖) se obtiene del siguiente modo:
+- Calcular el promedio de las distancias (llámese 𝑎𝑖) entre la observación 𝑖 y el resto de observaciones que pertenecen al mismo cluster. Cuanto menor sea 𝑎𝑖, mejor ha sido la asignación de 𝑖 a su cluster.
+- Calcular la distancia promedio entre la observación 𝑖 y el resto de clusters. Entendiendo por distancia promedio entre 𝑖 y un determinado cluster 𝐶 como la media de las distancias entre 𝑖 y las observaciones del cluster 𝐶.
+- Identificar como 𝑏𝑖 a la menor de las distancias promedio entre 𝑖 y el resto de clusters, es decir, la distancia al cluster más próximo (neighbouring cluster).
+- Calcular el valor de silhouette como: 𝑠𝑖 = (𝑏𝑖 - 𝑎𝑖) / ( max(𝑎𝑖,𝑏𝑖) )
+  
+Se considera como número óptimo de clusters aquel que maximiza la media del silhouette coeficient de todas las observaciones.
+
+### c. Estadístico gap
+El estadístico gap fue publicado por R.Tibshirani, G.Walther y T. Hastie, autores también del magnífico libro Introduction to Statistical Learning. Este estadístico compara, para diferentes valores de k, la varianza total intra-cluster observada frente al valor esperado acorde a una distribución uniforme de referencia. La estimación del número óptimo de clusters es el valor k con el que se consigue maximizar el estadístico gap, es decir, encuentra el valor de k con el que se consigue una estructura de clusters lo más alejada posible de una distribución uniforme aleatoria. Este método puede aplicarse a cualquier tipo de clustering.
+
+El algoritmo del gap statistic method es el siguiente:
+
+

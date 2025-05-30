@@ -7,6 +7,9 @@ Todos los métodos de clustering tienen una cosa en común, para llevar a cabo l
 ### 1. Distancia euclídea
 La distancia euclídea entre dos puntos 𝑝 y 𝑞 se define como la longitud del segmento que une ambos puntos. En coordenadas cartesianas, la distancia euclídea se calcula empleando el teorema de Pitágoras. Por ejemplo, en un espacio de dos dimensiones en el que cada punto está definido por las coordenadas (𝑥,𝑦), la distancia euclídea entre 𝑝 y 𝑞 es:
 
+<pag estilo="estilo de fuente:cursiva;" alinear="centro">
 <imagen altura=120 ancho=256 origen="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEusyv9AlaTdtHWIhfS2c33s9wDuHgEC926Q&s"/><es>
+<b> Figura 1<b>
+</pag>
 
 Esta ecuación puede generalizarse para un espacio euclídeo n-dimensional donde cada punto está definido por un vector de n coordenadas:  𝑝=(𝑝1,𝑝2,𝑝3,...,𝑝𝑛) y  𝑞=(𝑞1,𝑞2,𝑞3,...,𝑞𝑛).
